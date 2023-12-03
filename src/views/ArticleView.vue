@@ -1,11 +1,12 @@
 <script>
 import axios from 'axios';
+import dayjs from "dayjs";
 
 export default {
   name: 'ArticleView',
   data() {
     return {
-      todos_list: [],
+      articleList: [],
     };
   },
   mounted() {
@@ -19,14 +20,18 @@ export default {
         "X-MICROCMS-API-KEY": apiKey
       }
       const url = 'https://em3vfr548v.microcms.io/api/v1/blog'
-      axios.get(url, { headers: headers}).then(response => {
+      axios.get(url, {headers: headers}).then(response => {
         if (response.status === 200) {
           console.log(response.data)
+          this.articleList = response.data.contents
+          console.log(this.articleList)
         }
       }).catch(error => {
         console.log(error)
       });
-
+    },
+    formatDate(dateString) {
+      return dayjs(dateString).format('YYYY-MM-DD');
     }
   }
 };
@@ -41,24 +46,18 @@ export default {
     </h2>
     <div class="content-box">
       <div class="article-box">
-        <v-card
-            class="mx-auto my-4"
-            title="心理的安全性を高めるための実践"
-            subtitle="投稿日 : 2023年12月1日"
-            text="心理的安全性とは..."
-            variant="tonal"
-            link>
-        </v-card>
-      </div>
-      <div class="article-box">
-        <v-card
-            class="mx-auto my-4"
-            title="心理的安全性を高めるための実践"
-            subtitle="投稿日 : 2023年12月1日"
-            text="心理的安全性とは..."
-            variant="tonal"
-            link>
-        </v-card>
+        <ul>
+          <li v-for="(value) in articleList" :key="value.id">
+            <v-card
+                class="mx-auto my-4"
+                :title="value.title"
+                :subtitle="formatDate(value.publishedAt)"
+                :text="value.description"
+                variant="tonal"
+                link>
+            </v-card>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -73,6 +72,10 @@ export default {
     padding-top: 20px;
     padding-right: 10px;
     padding-left: 10px;
+  }
+
+  li {
+    list-style: none;
   }
 
 
