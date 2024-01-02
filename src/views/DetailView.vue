@@ -53,8 +53,8 @@ export default {
       const body = {
         "articleId": id
       }
-      const url = 'http://localhost:8080/v1/article/retrieve-detail'
-      // const url = 'https://original-blog-y3raiwisja-uc.a.run.app/v1/article/retrieve-detail'
+      // const url = 'http://localhost:8080/v1/article/retrieve-detail'
+      const url = 'https://original-blog-y3raiwisja-uc.a.run.app/v1/article/retrieve-detail'
       axios.post(url, body,{headers: headers}).then(response => {
         if (response.status === 200) {
           console.log(response.data)
