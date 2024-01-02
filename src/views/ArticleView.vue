@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import dayjs from "dayjs";
+import router from "@/router";
 
 export default {
   name: 'ArticleView',
@@ -14,13 +15,12 @@ export default {
   },
   methods: {
     get_article() {
-      const apiKey = import.meta.env.VITE_APP_API_KEY
       const headers = {
         "Content-Type": "application/json",
-        "X-MICROCMS-API-KEY": apiKey
       }
-      const url = 'https://em3vfr548v.microcms.io/api/v1/blog'
-      axios.get(url, {headers: headers}).then(response => {
+      // const url = 'http://localhost:8080/v1/article/retrieve-all'
+      const url = 'https://original-blog-y3raiwisja-uc.a.run.app/v1/article/retrieve-all'
+      axios.post(url, {headers: headers}).then(response => {
         if (response.status === 200) {
           console.log(response.data)
           this.articleList = response.data.contents
@@ -32,7 +32,23 @@ export default {
     },
     formatDate(dateString) {
       return dayjs(dateString).format('YYYY-MM-DD');
+    },
+    truncateString(str) {
+      const maxLength = 50; // 最大文字数
+      if (str.length > maxLength) {
+        return str.slice(0, maxLength) + '...'; // 指定の文字数に切り詰めて末尾に省略記号を追加
+      } else {
+        return str; // 指定の文字数未満の場合はそのまま返す
+      }
+    },
+    goToDetail(value) {
+      // IDに基づいてページ遷移などの処理を行う
+      // ここでは単純にログにIDを表示するだけの例を示します
+      console.log('Clicked ID:', value.id);
+      // ページ遷移の処理などを記述
+      router.push(`/detail/${value.id}`); // Vue Routerを使用してページ遷移する場合の例
     }
+
   }
 };
 
@@ -47,12 +63,12 @@ export default {
     <div class="content-box">
       <div class="article-box">
         <ul>
-          <li v-for="(value) in articleList" :key="value.id">
+          <li v-for="(value) in articleList" :key="value.id" @click="goToDetail(value) ">
             <v-card
                 class="mx-auto my-4"
                 :title="value.title"
                 :subtitle="formatDate(value.publishedAt)"
-                :text="value.description"
+                :text="truncateString(value.description)"
                 variant="tonal"
                 link>
             </v-card>
