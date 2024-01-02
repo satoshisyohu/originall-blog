@@ -49,6 +49,7 @@ export default {
     get_article(id) {
       const headers = {
         "Content-Type": "application/json",
+
       }
       const body = {
         "articleId": id
