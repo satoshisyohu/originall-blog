@@ -8,6 +8,7 @@ export default {
   data() {
     return {
       articleList: [],
+
     };
   },
   mounted() {
@@ -82,6 +83,11 @@ export default {
 
 <style>
 @media (min-width: 1024px) {
+
+  div{
+    font-family:'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace', 'Noto Sans JP', sans-serif;
+  }
+
   .about {
     width: 800px;
     margin: 0 auto;

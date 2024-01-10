@@ -7,6 +7,7 @@ import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
 </script>
 <template>
+  <body>
   <div class="contents-box">
     <div class="about-box">
       <h2>#About</h2>
@@ -41,11 +42,15 @@ import SupportIcon from './icons/IconSupport.vue'
       </div>
     </div>
   </div>
+  </body>
 
 </template>
 
 <style>
 @media (min-width: 1024px) {
+  body{
+    font-family:'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace', 'Noto Sans JP', sans-serif;
+  }
   .contents-box{
     width:800px;
     margin: 0 auto;

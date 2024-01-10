@@ -76,12 +76,20 @@ export default {
 
 <style>
 @media (min-width: 1024px) {
+  div{
+    font-family:'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace', 'Noto Sans JP', sans-serif;
+  }
+
   .detail {
     width: 800px;
     margin: 0 auto;
     padding-top: 20px;
     padding-right: 10px;
     padding-left: 10px;
+  }
+  .title{
+    font-size: 22px;
+
   }
 
   .publishedAt {
@@ -93,9 +101,8 @@ export default {
   .main-contents {
     padding-top: 20px;
     padding-bottom: 20px;
-    font-size: 17px;
+    font-size: 14px;
   }
-
 
 }
 </style>
