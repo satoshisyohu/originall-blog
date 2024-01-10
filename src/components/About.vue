@@ -42,6 +42,7 @@ import SupportIcon from './icons/IconSupport.vue'
       </div>
     </div>
   </div>
+
   </body>
 
 </template>
